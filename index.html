@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yan Wang | About</title>
+  <style>
+    /* CHANGE YOUR COLORS HERE */
+    :root {
+      --sidebar: #4A202B;
+      --gold: #B18A49;
+      --gold-light: #E0C68C;
+      --header: #F4F0ED;
+      --text: #302D2C;
+      --background: #FFFFFF;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; font: 15px/1.7 Arial, Helvetica, sans-serif; color: var(--text); background: var(--background); }
+    a { color: #966b32; text-underline-offset: 3px; }
+    a:hover { color: var(--sidebar); }
+    .sidebar { position: fixed; inset: 0 auto 0 0; width: 248px; background: var(--sidebar); color: #f4ece7; padding: 49px 39px; z-index: 10; }
+    .brand { font-size: 25px; font-weight: 300; white-space: nowrap; margin-bottom: 62px; }
+    .sidebar nav a { display: block; color: #f0e5e1; text-decoration: none; margin: 14px 0; font-size: 15px; }
+    .sidebar nav a:hover, .sidebar nav a.active { color: var(--gold-light); }
+    main { margin-left: 248px; min-height: 100vh; }
+    .banner { min-height: 143px; background: var(--header); padding: 68px max(7%, 45px) 25px; }
+    .banner h1 { color: var(--gold); font-size: 26px; font-weight: 400; margin: 0; }
+    .content { max-width: 1280px; margin: auto; padding: 24px 6% 95px; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .home-grid { display: grid; grid-template-columns: 1.35fr 1fr; align-items: start; gap: 55px; }
+    p { margin: 15px 0; }
+    .portrait { display: block; width: 100%; height: auto; max-height: 650px; object-fit: cover; }
+    .photo-placeholder { display: flex; align-items: center; justify-content: center; height: 580px; background: #eee9e5; border: 1px dashed #cbbcb4; color: #8b7d77; text-align: center; padding: 25px; }
+    .entry-list { list-style: none; padding: 0; margin: 10px 0; }
+    .entry { margin: 0 0 27px; padding-left: 17px; border-left: 2px solid #e9dfd5; }
+    .entry-title { display: block; font-weight: 600; line-height: 1.55; }
+    .entry-detail { display: block; margin-top: 5px; }
+    .entry-links { display: inline-block; margin-left: 8px; font-size: 14px; }
+    h2 { color: var(--gold); font-size: 24px; font-weight: 400; margin: 22px 0 24px; }
+    .muted { color: #7b726d; }
+    .city-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 22px; margin-top: 22px; }
+    .city-card { border: 1px solid #e2d9d3; background: #faf8f6; text-align: left; padding: 0; cursor: pointer; color: var(--text); font: inherit; }
+    .city-card:hover { border-color: var(--gold); }
+    .city-cover { display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 3; background: #eee7e1; color: #9c8a80; overflow: hidden; }
+    .city-cover img { width: 100%; height: 100%; object-fit: cover; }
+    .city-label { padding: 12px 15px; font-size: 17px; }
+    .city-count { font-size: 12px; color: #8b817b; }
+    .back-button { background: none; border: none; cursor: pointer; color: #966b32; padding: 0; font: inherit; margin-bottom: 20px; }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 15px; }
+    .photo-grid button { border: 0; padding: 0; cursor: zoom-in; background: #eee7e1; }
+    .photo-grid img { width: 100%; aspect-ratio: 4 / 3; display: block; object-fit: cover; }
+    .empty-city { color: #8b817b; padding: 35px; background: #f8f4f1; }
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 50; background: rgba(20,14,15,.93); align-items: center; justify-content: center; padding: 55px 25px; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 95%; max-height: 90vh; object-fit: contain; }
+    .lightbox-close { position: absolute; top: 12px; right: 24px; border: 0; background: none; color: white; font-size: 38px; cursor: pointer; }
+    .menu-button { display: none; }
+    @media (max-width: 850px) {
+      .sidebar { transform: translateX(-100%); transition: transform .2s; }
+      .sidebar.open { transform: translateX(0); }
+      .menu-button { display: block; position: fixed; top: 15px; right: 15px; z-index: 20; border: 0; background: var(--sidebar); color: white; font-size: 20px; padding: 6px 13px; cursor: pointer; }
+      main { margin-left: 0; }
+      .banner { padding: 65px 26px 22px; }
+      .content { padding: 25px 25px 75px; }
+      .home-grid { grid-template-columns: 1fr; gap: 18px; }
+      .photo-placeholder { height: 370px; }
+    }
+    /* Papers and Presentations */
+
+.academic-list {
+    list-style-type: square;
+    padding-left: 20px;
+    margin-top: 30px;
+}
+
+.academic-list li {
+    padding-left: 0;
+    margin-bottom: 28px;
+}
+
+
+/* Only the presentation/paper titles occupy a full line */
+.academic-list li > strong {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* Bold text inside descriptions stays inline */
+.academic-list .details strong {
+    display: inline;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+
+.academic-list .details {
+    margin: 0;
+    padding-left: 0;
+    line-height: 1.7;
+}
+
+.academic-list a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.academic-list a:hover {
+    text-decoration-thickness: 2px;
+}
+
+.content a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+
+/* Slides, Posters, and Paper links */
+
+.academic-list .details a,
+.academic-list .details a:link,
+.academic-list .details a:visited {
+    color: #B18A49;
+    text-decoration: underline;
+    text-decoration-color: #B18A49;
+    text-underline-offset: 3px;
+}
+
+.academic-list .details a:hover {
+    color: #8F6D35;
+    text-decoration-color: #8F6D35;
+}
+
+  </style>
+</head>
+<body>
+  <button class="menu-button" aria-label="Open navigation" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+  <aside class="sidebar">
+    <div class="brand">Yan Wang</div>
+    <nav aria-label="Main navigation">
+      <a href="#about" data-page="about">About</a>
+      <a href="#presentations" data-page="presentations">Presentations</a>
+      <a href="#papers" data-page="papers">Papers</a>
+      <a href="#gallery" data-page="gallery">Gallery</a>
+    </nav>
+  </aside>
+  <main>
+    <header class="banner"><h1 id="page-title">About</h1></header>
+    <div class="content">
+      <section class="page active" id="about">
+        <div class="home-grid">
+          <div>
+            <p>Hi there! I'm Yan Wang, a first-year PhD student in <a href="https://www.uni-leipzig.de/en/institute-of-linguistics" target="_blank" rel="noopener noreferrer">Linguistics at Leipzig University</a>. Previously, I earned an MA in Linguistics from <a href="https://www.uni-leipzig.de/en/institute-of-linguistics" target="_blank" rel="noopener noreferrer">Leipzig University</a> and an MA in Linguistics from <a href="https://ling.cuhk.edu.hk" target="_blank" rel="noopener noreferrer">The Chinese University of Hong Kong</a>.</p>
+            <p>As a member of the research unit <a href="https://www.philol.uni-leipzig.de/en/institute-of-linguistics/research/ru-cyclic-optimization" target="_blank" rel="noopener noreferrer">Cyclic Optimization</a>, I work on the subproject <a href="https://www.philol.uni-leipzig.de/en/institute-of-linguistics/research/ru-cyclic-optimization" target="_blank" rel="noopener noreferrer">A Cyclic Optimization Approach to the A/A-bar Distinction in Syntax</a>, led by <a href="https://home.uni-leipzig.de/muellerg/" target="_blank" rel="noopener noreferrer">Prof. Dr. Gereon Müller</a>. The project develops a new approach to the A/A-bar distinction in syntax based on <strong>Derivational Timing</strong> within a strictly cyclic derivation. My research focuses on the empirical investigation of interactions between movement types and other syntactic processes in Mandarin Chinese, as well as the formal modeling of these patterns.</p>
+            <p>Here you can find my <a href="cv.pdf" target="_blank" rel="noopener noreferrer">CV</a>.</p>
+            <p><strong>E-mail</strong><br>
+              <a href="mailto:y.wang@uni-leipzig.de">y.wang@uni-leipzig.de</a><br>
+              <a href="mailto:wy199856abc@163.com">wy199856abc@163.com</a></p>
+            <p><strong>Address</strong><br>
+              Institut für Linguistik<br>
+              Geisteswissenschaftliches Zentrum<br>
+              Universität Leipzig<br>
+              Beethovenstrasse 15<br>
+              04107 Leipzig, Germany</p>
+          </div>
+          <div>
+            <!-- Put a JPG image named portrait.jpg next to index.html. No caption. -->
+            <img class="portrait" src="portrait.jpg" alt="Portrait" id="portrait" hidden>
+            <div class="photo-placeholder" id="portrait-placeholder">Add your photograph as <strong>&nbsp;portrait.jpg</strong></div>
+          </div>
+        </div>
+      </section>
+
+     
+<section id="presentations" class="page">
+    <ul class="academic-list">
+
+        <li>
+            <strong>
+                Splitting Agree to [φ] and [INDEX]:
+                Evidence from Chinese Reflexives
+            </strong>
+            <p class="details">
+                October 2026. Talk at the 19th Conference on
+                Syntax, Phonology and Language Analysis
+                (<strong>SinFonIJA 19</strong>), Universität Graz, Graz.
+                <a href="Splitting_Agree_to_phi_and_Index.pdf" target="_blank">[Slides]</a>
+            </p>
+        </li>
+
+        <li>
+            <strong>
+                Three Types of Mandarin Double-object Constructions
+            </strong>
+            <p class="details">
+                August 2025. Poster presented at the 27th Seoul
+                International Conference on Generative Grammar
+                (<strong>SICOGG 27</strong>), Sogang University, Seoul.
+                <a href="sicogg.pdf" target="_blank">[Poster]</a>
+            </p>
+        </li>
+
+        <li>
+            <strong>
+                Unselective Binder of Wh-dependency under
+                Optimality Theory
+            </strong>
+            <p class="details">
+                May 2025. Talk at the 77th Studentische Tagung
+                Sprachwissenschaft (<strong>StuTS 77</strong>),
+                Universität Leipzig, Leipzig.
+                <a href="Stuts_wh_OT.pdf" target="_blank">[Slides]</a>
+            </p>
+        </li>
+
+        <li>
+            <strong>
+                The Syntax of the Mandarin Num-Cl P Num-Cl Constructions
+            </strong>
+            <p class="details">
+                January 2024. Poster presented at the
+                Linguistic Society of America 2024 Annual Meeting
+                (<strong>LSA 2024</strong>), New York City.
+                <a href="Poster_LSA.pdf" target="_blank">[Poster]</a>
+            </p>
+        </li>
+
+        <li>
+            <strong>
+                The Syntax of the Mandarin Num-Cl P Num-Cl Constructions
+            </strong>
+            <p class="details">
+                October 2023. Invited talk for LING 5701 A&amp;B
+                Linguistics Research, The Chinese University
+                of Hong Kong, Hong Kong.
+                <a href="Syntax_NCPNC_Pre.pdf" target="_blank">[Slides]</a>
+            </p>
+        </li>
+
+        </li>
+    </ul>
+</section>
+
+<section id="papers" class="page">
+    <ul class="academic-list">
+
+
+<li>
+    <strong>
+        Three Types of Mandarin Double-object Constructions
+    </strong>
+
+    <p class="details">
+        2025.
+        <em>
+            Proceedings of the 27th Seoul International
+            Conference on Generative Grammar
+        </em>,
+        pp. 271–280.
+        <a href="https://drive.google.com/file/d/150SFON99WpWWJpNKAZCXi6neipdleAQ8/view"
+           target="_blank"
+           rel="noopener noreferrer">[Paper]</a>
+    </p>
+</li>
+
+
+        <li>
+            <strong>
+                The Syntax of Mandarin Num-Cl P Num-Cl Constructions
+            </strong>
+            <p class="details">
+                2024.
+                <em>
+                    Proceedings of the Linguistic Society
+                    of America
+                </em>, 9(1).
+                <a href="https://journals.linguisticsociety.org/proceedings/index.php/PLSA/article/view/5665"
+                   target="_blank">
+                    [Paper]
+                </a>
+            </p>
+        </li>
+
+
+
+<li>
+    <strong>
+        Overview on China's 14th Five-Year Plans
+        in the Transport Sector
+        <span style="font-weight: normal;">
+            (with
+            <a href="https://changing-transport.org/team/sebastian-ibold/"
+               target="_blank">
+                Sebastian Ibold
+            </a>
+            and
+            <a href="https://changing-transport.org/team/yun-xia/"
+               target="_blank">
+                Yun Xia
+            </a>)
+        </span>
+    </strong>
+
+    <p class="details">
+        2022.
+        <em>
+            Deutsche Gesellschaft für Internationale
+            Zusammenarbeit (GIZ) GmbH
+        </em>, Beijing.
+        <a href="145.pdf" target="_blank">[Paper]</a>
+    </p>
+</li>
+
+
+
+        <li>
+            <strong>
+                The Comparative Analysis of the Present Situation
+                between Chinese and Western Rural Areas under
+                the Cross-cultural Perspective of Socialize Gender Roles
+            </strong>
+            <p class="details">
+                2021.
+                <em>OVERSEAS DIGEST</em>,
+                2021(9): 8–9.
+            </p>
+        </li>
+
+    </ul>
+</section>
+
+
+      <section class="page" id="gallery">
+        <div id="city-overview">
+          <p>A collection of moments captured with my Fujifilm X-E4 and iPhone 13.</p>
+          <div class="city-grid" id="city-grid"></div>
+        </div>
+        <div id="city-detail" hidden>
+          <button class="back-button" id="back-to-cities">← All cities</button>
+          <h2 id="city-name"></h2>
+          <div class="photo-grid" id="city-photos"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox-close" id="close-lightbox" aria-label="Close photo">×</button>
+    <img id="lightbox-img" alt="Expanded photograph">
+  </div>
+  <script>
+    /* GALLERY EDITING: for each city, list photo file paths in photos: [].
+       Example: { name: 'Graz', photos: ['photos/graz/photo1.jpg', 'photos/graz/photo2.jpg'] }
+       You may add as many photos and cities as you want. */
+    const cities = [
+      { name: 'Leipzig', photos: ['leip1.JPG','lep2.JPG', 'lep3.JPG', 'leip4.JPG', 'leip5.JPG', 'leip6.JPG'] },
+      { name: 'Hong Kong', photos: ['hk1.JPG','hk2.JPG', 'hk3.JPG', 'hk4.JPG', 'hk5.JPG', 'hk6.JPG', 'hk7.jpg', 'hk8.JPG', 'hk9.jpeg', 'hk10.JPG', 'hk11.JPG', 'hk12.JPG', 'hk13.JPG', 'hk14.JPG', 'hk15.JPG', 'hk16.JPG', 'hk17.JPG'] },
+      { name: 'Berlin', photos: ['Berlin1.jpg', 'Berlin2.JPEG', 'Berlin3.jpeg', 'Berlin4.JPG', 'Berlin5.JPG', 'Berlin6.jpeg', 'Berlin7.JPG'] },
+      { name: 'Dresden', photos: ['dd1.jpg', 'dd2.jpg', 'dd3.JPG', 'dd4.jpg', 'dd5.jpg', 'dd6.jpg', 'dd7.jpg', 'dd8.jpg','dd10.jpeg'] },
+    { name: 'Singapore', photos: ['s1.JPG','s2.JPG', 's3.JPG', 's4.JPG', 's5.JPG', 's6.JPG', 's7.jpg', 's8.JPG', 's9.JPG', 's10.JPG', 's11.JPG', 's12.jpeg'] },
+  { name: 'Shanghai', photos: ['sh1.JPEG','sh2.jpeg', 'sh3.jpeg', 'sh4.JPG', 'sh5.JPG', 'sh6.JPEG', 'sh7.JPEG', 'sh8.JPEG', 'sh9.jpg', 'sh10.JPEG', 'sh11.jpeg', 'sh12.jpeg', 'sh13.jpeg', 'sh14.JPG', 'sh15.JPG'] },
+{ name: 'Frankfurt', photos: ['f1.jpg', 'f2.jpg', 'f3.jpg', 'f4.jpg', 'f5.jpg', 'f6.JPEG', 'f7.JPEG','f8.jpg', 'f9.jpg'] },
+{ name: 'München', photos: ['m1.jpg', 'm2.JPEG', 'm3.jpg', 'm4.jpeg', 'm5.jpg', 'm6.jpg', 'm7.jpg'] },
+{ name: 'Istanbul', photos: ['i1.jpg','i2.JPEG', 'i3.JPEG', 'i4.jpeg', 'i5.JPEG', 'i6.jpg'] },
+{ name: 'New York', photos: ['n1.jpeg','n2.jpeg', 'n3.jpeg', 'n4.jpeg', 'n5.jpeg', 'n6.jpeg', 'n7.jpeg', 'n8.jpeg', 'n9.jpeg', 'n10.jpeg', 'n11.jpeg', 'n12.jpeg'] },
+{ name: 'Los Angeles', photos: ['la1.jpeg','la2.jpeg', 'la3.jpeg', 'la4.jpeg', 'la5.jpeg', 'la6.jpeg', 'la7.jpeg', 'la8.jpeg'] },
+{ name: 'Hamburg', photos: ['hb1.jpg', 'hb2.jpg', 'hb3.jpg', 'hb4.jpg', 'hb5.jpg', 'hb7.JPG'] },
+{ name: 'Bremen', photos: ['bre1.jpeg', 'bre2.jpg', 'bre3.jpg', 'bre4.JPG', 'bre5.jpg'] },
+{ name: 'Tenerife', photos: ['tr1.jpg', 'tr2.jpeg', 'tr3.jpeg', 'tr4.JPG', 'tr5.jpg', 'tr6.jpg', 'tr7.jpg'] },
+{ name: 'Seoul', photos: ['kr1.jpg', 'kr2.jpg', 'kr3.jpg', 'kr4.JPG', 'kr5.JPG', 'kr6.jpg', 'kr7.jpeg'] },
+{ name: 'Paris', photos: ['paris1.jpeg','paris2.jpeg', 'paris3.jpeg'] },
+{ name: 'Amsterdam', photos: ['am1.jpeg','am2.jpeg', 'am3.jpeg'] },
+{ name: 'Leiden', photos: ['le1.jpeg','le2.jpeg', 'le13.jpeg'] },
+{ name: 'Crete', photos: ['c1.jpeg','c2.jpeg', 'c3.jpeg', 'c4.jpeg'] },
+{ name: 'Graz', photos: ['gr1.jpeg','gr2.jpeg', 'gr3.jpeg', 'gr4.jpeg', 'gr5.jpeg'] }]
+
+    const pageLabels = { about: 'About', presentations: 'Presentations', papers: 'Papers', gallery: 'Gallery' };
+    function showPage() {
+      const hash = decodeURIComponent(location.hash.slice(1));
+      const page = pageLabels[hash] ? hash : 'about';
+      document.querySelectorAll('.page').forEach(el => el.classList.toggle('active', el.id === page));
+      document.querySelectorAll('.sidebar nav a').forEach(el => el.classList.toggle('active', el.dataset.page === page));
+      document.getElementById('page-title').textContent = pageLabels[page];
+      document.title = `Yan Wang | ${pageLabels[page]}`;
+      document.querySelector('.sidebar').classList.remove('open');
+      if (page === 'gallery') showCities();
+      window.scrollTo(0, 0);
+    }
+    addEventListener('hashchange', showPage);
+    showPage();
+
+    const portrait = document.getElementById('portrait');
+    portrait.onload = () => { portrait.hidden = false; document.getElementById('portrait-placeholder').hidden = true; };
+    portrait.onerror = () => { portrait.hidden = true; document.getElementById('portrait-placeholder').hidden = false; };
+
+    function showCities() {
+      document.getElementById('city-overview').hidden = false;
+      document.getElementById('city-detail').hidden = true;
+      const grid = document.getElementById('city-grid');
+      grid.replaceChildren();
+      cities.forEach((city, index) => {
+        const button = document.createElement('button');
+        button.className = 'city-card';
+        const cover = document.createElement('div');
+        cover.className = 'city-cover';
+        if (city.photos.length) {
+          const img = document.createElement('img');
+          img.src = city.photos[0]; img.alt = city.name;
+          cover.appendChild(img);
+        } else { cover.textContent = 'Add city photographs'; }
+        const label = document.createElement('div'); label.className = 'city-label';
+        label.textContent = city.name;
+        const count = document.createElement('div'); count.className = 'city-count';
+        count.textContent = `${city.photos.length} ${city.photos.length === 1 ? 'photo' : 'photos'}`;
+        label.appendChild(count); button.append(cover, label);
+        button.addEventListener('click', () => openCity(index)); grid.appendChild(button);
+      });
+    }
+    function openCity(index) {
+      const city = cities[index];
+      document.getElementById('city-overview').hidden = true;
+      document.getElementById('city-detail').hidden = false;
+      document.getElementById('city-name').textContent = city.name;
+      const grid = document.getElementById('city-photos'); grid.replaceChildren();
+      if (!city.photos.length) {
+        const empty = document.createElement('p'); empty.className = 'empty-city';
+        empty.textContent = 'Photos for this city will appear here.'; grid.appendChild(empty);
+      }
+      city.photos.forEach(file => {
+        const button = document.createElement('button');
+        const img = document.createElement('img'); img.src = file; img.alt = `Photo from ${city.name}`; img.loading = 'lazy';
+        button.appendChild(img); button.addEventListener('click', () => openLightbox(file)); grid.appendChild(button);
+      });
+    }
+    document.getElementById('back-to-cities').addEventListener('click', showCities);
+    function openLightbox(file) { document.getElementById('lightbox-img').src = file; document.getElementById('lightbox').classList.add('open'); }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+    document.getElementById('close-lightbox').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox').addEventListener('click', e => { if (e.target.id === 'lightbox') closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    document.querySelectorAll('a[data-pending]').forEach(link => link.addEventListener('click', e => e.preventDefault()));
+  </script>
+</body>
+</html>
